@@ -1,11 +1,11 @@
 <div align="center">
 
-<img src="./Gallery/GalatchiLogo.png" alt="galatchilogo" width="1300" /> 
+<img src="./Gallery/GalatchiLogo.png" alt="galatchilogo" width="800" /> 
 </div>
-<img src="./Gallery/GalatchiLogo2.png" alt="galatchilogo" width="1200" />
+<img src="./Gallery/GalatchiLogo2.png" alt="galatchilogo" width="700" />
 <div align="center">
 
-A Tamagotchi but from another planet
+A Tamagotchi but from another planet    
 
 <p>
 </p>
