@@ -1,6 +1,6 @@
 <div align="center">
 
-# <img src="./Gallery/GalatchiLogo.png" alt="galatchilogo" width="200" />
+# <img src="./Gallery/GalatchiLogo.png" alt="galatchilogo" width="300" />
 
 A Tamagotchi but from another planet
 
