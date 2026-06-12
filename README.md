@@ -17,4 +17,8 @@ A Tamagotchi but from another planet
 
 # Overview
 
+<div align="center">
+
+<img src="./Gallery"
+
 **
