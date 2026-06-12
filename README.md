@@ -1,6 +1,8 @@
-<div align="center">
 
-# <img src="./Gallery/GalatchiLogo.png" alt="galatchilogo" width="300" />
+
+# <img src="./Gallery/GalatchiLogo.png" alt="galatchilogo" width="300" align="center" />
+<img src="./Gallery/GalatchiLogo.png" alt="galatchilogo" width="100" />
+<div align="center">
 
 A Tamagotchi but from another planet
 
@@ -8,7 +10,7 @@ A Tamagotchi but from another planet
 </p>
 
 ### _Your care determines the alien you get._
-
+</div>
 ---
 
 #Overview
