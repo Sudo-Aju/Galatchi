@@ -1,7 +1,7 @@
 
 
 # <img src="./Gallery/GalatchiLogo.png" alt="galatchilogo" width="300" align="center" />
-<img src="./Gallery/GalatchiLogo.png" alt="galatchilogo" width="100" />
+<img src="./Gallery/GalatchiLogo2.png" alt="galatchilogo" width="100" />
 <div align="center">
 
 A Tamagotchi but from another planet
