@@ -19,7 +19,7 @@ A Tamagotchi but from another planet
 
 <div align="center">
 
-<video controls loop width="100%"> <source src="./Gallery/Turntable.mp4" type="video/mp4"> </video>
+<img src="./Gallery/render.png" width="100%">
 </div>
 
 **Galatchi** is an open-source virtual alien pet inspired by classis Tamagotchi devices, but with a twist.
