@@ -28,6 +28,12 @@ Instead of raising the same pet every tim, your decisions shape the a mysteriuos
 
 ---
 
+# Zine
+
+<img src="./Gallery/GalatchiZine.png" width="100%">
+
+---
+
 # Gallery
 
 <div align="center">
