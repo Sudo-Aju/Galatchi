@@ -17,14 +17,13 @@
 #define JOY_UP          14
 #define JOY_LEFT        15
 #define BTN_RIGHT_90    10 //key 2
-#define BTN_LEFT_90     4 // key 1
+#define BTN_LEFT_90     4  // key 1
 #define BTN_UP          0
 #define BTN_DOWN        3
 #define BTN_LEFT        1
 #define BTN_RIGHT       2
 
 PCA9555 ioex;
-
 Adafruit_LSM6DSOX imu;
 
 #define SCREEN_WIDTH 128
@@ -43,7 +42,6 @@ struct Alien {
 Alien alien;
 int selectedMenu = 0;
 const int MENU_COUNT = 3;
-
 
 enum Screen {
   SCREEN_MAIN,
@@ -139,11 +137,15 @@ void setup() {
   Serial.begin(115200);
   Wire.begin(I2C_SDA, I2C_SCL);
 
+  
+  pinMode(BUZZER_PIN, OUTPUT);
+
+  
   ioex.attach(Wire);
   ioex.direction(PCA95x5::Direction::IN_ALL);
   ioex.polarity(PCA95x5::Polarity::ORIGINAL_ALL);
 
-
+  
   if(!display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR)) {
     Serial.println("OLED Init Failed!");
   } else {
@@ -153,6 +155,18 @@ void setup() {
     display.setCursor(0, 0);
     display.println("Galagotchi Init..");
     display.display();
+  }
+
+  
+  if (!imu.begin_I2C()) {
+    Serial.println("Failed to find LSM6DSOX chip");
+  } else {
+    Serial.println("LSM6DSOX Found!");
+    
+    imu.setAccelRange(LSM6DS_ACCEL_RANGE_4_G);
+    imu.setGyroRange(LSM6DS_GYRO_RANGE_500_DPS);
+    imu.setAccelDataRate(LSM6DS_RATE_104_HZ);
+    imu.setGyroDataRate(LSM6DS_RATE_104_HZ);
   }
 
   delay(1000);
@@ -165,6 +179,7 @@ void setup() {
 
 unsigned long lastUpdate = 0;
 unsigned long lastButtonPress = 0;
+unsigned long lastShakeTime = 0;
 
 void updateAlien() {
   if (millis() - lastUpdate > 5000) {
@@ -181,7 +196,36 @@ void updateAlien() {
   }
 }
 
+void checkIMU() {
+  
+  if (millis() - lastShakeTime < 1000) return;
 
+  sensors_event_t accel;
+  sensors_event_t gyro;
+  sensors_event_t temp;
+  imu.getEvent(&accel, &gyro, &temp);
+
+  
+  float magnitude = sqrt(pow(accel.acceleration.x, 2) + 
+                         pow(accel.acceleration.y, 2) + 
+                         pow(accel.acceleration.z, 2));
+
+  
+  if (magnitude > 25.0) {
+    alien.happiness += 15;
+    alien.energy -= 5;
+    
+    if(alien.happiness > 100) alien.happiness = 100;
+    if(alien.energy < 0) alien.energy = 0;
+
+    // Shake sound effect
+    tone(BUZZER_PIN, 1200, 100);
+    delay(100);
+    tone(BUZZER_PIN, 1600, 150);
+    
+    lastShakeTime = millis();
+  }
+}
 
 void checkButtons() {
   if (millis() - lastButtonPress < 200) return;
@@ -218,7 +262,7 @@ void checkButtons() {
     tone(BUZZER_PIN, 2200, 40);
     delay(50);
     tone(BUZZER_PIN, 2200, 60);
-  lastButtonPress = millis();
+    lastButtonPress = millis();
 
   } else if (pcaPressed(BTN_UP)) {
     alien.energy += 5;
@@ -245,7 +289,6 @@ void checkButtons() {
     lastButtonPress = millis();
   }
 }
-
 
 void handleScreenLogic() {
   switch(currentScreen) {
@@ -290,13 +333,13 @@ void render() {
   const unsigned char* sprite;
   if (alien.energy < 20) {
     sprite = alienSleep;
-} else if (alien.hunger < 30 || alien.happiness < 30) {
+  } else if (alien.hunger < 30 || alien.happiness < 30) {
     sprite = alienSad;
-} else if (alien.hunger > 50 && alien.happiness > 50 && alien.energy > 50) {
+  } else if (alien.hunger > 50 && alien.happiness > 50 && alien.energy > 50) {
     sprite = alienHappy;
-} else {
+  } else {
     sprite = alienNeutral;
-}
+  }
 
   display.drawBitmap(56, 2, sprite, 16, 16, SSD1306_WHITE);
 
@@ -320,17 +363,11 @@ void render() {
   display.display();
 }
 
-
-
 void loop() {
+  checkIMU();
   checkButtons();
   updateAlien();
   handleScreenLogic();
   render();
   delay(100);
 }
-
-
-
-
-
