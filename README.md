@@ -48,15 +48,20 @@ Instead of raising the same pet every tim, your decisions shape the a mysteriuos
 
 # Motivation
 
-Most virtual pets follow a predictable path.
+The Tamagotchi is a classis retro game played by not only kids but all ages time to time. 
 
-Galatchi was designed around discovery.
+Galatchi is trying to be something similar but instead of:
 
-The goal was somple:
+### _Your care determines the **PET** you get._
 
-> What if every play raised a completely different alien?
+its
 
-The project explores how small choices can create unique outcomes through ....  TBD after firmware
+### _Your care determines the **ALIEN** you get._
+
+The goal was simple:
+
+> To make something nostalgic enough but so unique and related to an area no one ever though of.
+
 
 ---
 
