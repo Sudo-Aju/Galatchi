@@ -11,18 +11,9 @@ A Tamagotchi but from another planet
 </p>
 
 ### _Your care determines the alien you get._
+
+<img src="./Gallery/render.gif" align="center" width="65%">
 </div>
-
----
-
-
-<img src="./Gallery/render.gif" align="right" width="65%">
-
-<img alt="New Project" src="https://github.com/user-attachments/assets/985a9931-6b51-4663-9ef7-608e0798b2fe" align="left" width="33%"/>
-
-<br clear="right"/>
-
-
 
 ---
 
